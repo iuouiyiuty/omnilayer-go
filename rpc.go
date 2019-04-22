@@ -1,9 +1,12 @@
 package omnilayer
 
-import "github.com/iuouiyiuty/omnilayer-go/omnijson"
+import (
+	"github.com/iuouiyiuty/omnilayer-go/omnijson"
+	"github.com/iuouiyiuty/omnilayer-go/btcjson"
+)
 
-func (c *Client) GetBlockChainInfo() (omnijson.GetBlockChainInfoResult, error) {
-	return futureGetBlockChainInfo(c.do(omnijson.GetBlockChainInfoCommand{})).Receive()
+func (c *Client) GetBlockChainInfo() (btcjson.GetBlockChainInfoResult, error) {
+	return futureGetBlockChainInfo(c.do(btcjson.GetBlockChainInfoCommand{})).Receive()
 }
 
 func (c *Client) OmniListBlockTransactions(block int64) (omnijson.OmniListBlockTransactionsResult, error) {
@@ -22,7 +25,7 @@ func (c *Client) OmniGetTransaction(hash string) (omnijson.OmniGettransactionRes
 	})).Receive()
 }
 
-func (c *Client) ListUnspent(cmd omnijson.ListUnspentCommand) (omnijson.ListUnspentResult, error) {
+func (c *Client) ListUnspent(cmd btcjson.ListUnspentCommand) (btcjson.ListUnspentResult, error) {
 	return futureListUnspent(c.do(cmd)).Receive()
 }
 
@@ -30,7 +33,7 @@ func (c *Client) OmniCreatePayloadSimpleSend(cmd omnijson.OmniCreatePayloadSimpl
 	return futureOmniCreatePayloadSimpleSend(c.do(cmd)).Receive()
 }
 
-func (c *Client) CreateRawTransaction(cmd omnijson.CreateRawTransactionCommand) (omnijson.CreateRawTransactionResult, error) {
+func (c *Client) CreateRawTransaction(cmd btcjson.CreateRawTransactionCommand) (btcjson.CreateRawTransactionResult, error) {
 	return futureCreateRawTransaction(c.do(cmd)).Receive()
 }
 
@@ -47,18 +50,18 @@ func (c *Client) OmniCreateRawTxChange(cmd omnijson.OmniCreateRawTxChangeCommand
 }
 
 func (c *Client) ImportAddress(address string, rescan bool) error {
-	return futureImportAddress(c.do(omnijson.ImportAddressCommand{Adress: address, Rescan: rescan})).Receive()
+	return futureImportAddress(c.do(btcjson.ImportAddressCommand{Adress: address, Rescan: rescan})).Receive()
 }
 
-func (c *Client) SendRawTransaction(cmd omnijson.SendRawTransactionCommand) (omnijson.SendRawTransactionResult, error) {
+func (c *Client) SendRawTransaction(cmd btcjson.SendRawTransactionCommand) (btcjson.SendRawTransactionResult, error) {
 	return futureSendRawTransaction(c.do(cmd)).Receive()
 }
 
-func (c *Client) SignRawTransaction(cmd omnijson.SignRawTransactionCommand) (omnijson.SignRawTransactionResult, error) {
+func (c *Client) SignRawTransaction(cmd btcjson.SignRawTransactionCommand) (btcjson.SignRawTransactionResult, error) {
 	return futureSignRawTransaction(c.do(cmd)).Receive()
 }
 
-func (c *Client) SignRawTransactionWithKey(cmd omnijson.SignRawTransactionWithKeyCommand) (omnijson.SignRawTransactionWithKeyResult, error) {
+func (c *Client) SignRawTransactionWithKey(cmd btcjson.SignRawTransactionWithKeyCommand) (btcjson.SignRawTransactionWithKeyResult, error) {
 	return futureSignRawTransactionWithKey(c.do(cmd)).Receive()
 }
 
