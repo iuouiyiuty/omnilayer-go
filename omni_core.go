@@ -3,7 +3,7 @@ package omnilayer
 import (
 	"encoding/json"
 
-	"github.com/ibclabs/omnilayer-go/omnijson"
+	"github.com/iuouiyiuty/omnilayer-go/omnijson"
 )
 
 type futureOmniCreatePayloadSimpleSend chan *response
